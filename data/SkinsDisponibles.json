@@ -1,0 +1,20 @@
+[
+    {
+      "nombre": "Superman",
+      "precio": 100,
+      "color": ["rojo", "azul"],
+      "tipo": "Volador"
+    },
+    {
+      "nombre": "Mario",
+      "precio": 150,
+      "color": ["rojo", "verde"],
+      "tipo": "Mecanico"
+    },
+    {
+      "nombre": "Spiderman",
+      "precio": 70,
+      "color": ["rojo", "negro"],
+      "tipo": "Aracnido"
+    }
+]
