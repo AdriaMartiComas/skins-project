@@ -22,8 +22,7 @@ public class SkinServiceImpl implements SkinService {
     @Autowired
     private SkinRepository repository;
 
-   private final String filePath = ".//data//SkinsDisponibles.json";
-
+    private final String filePath = ".//data//SkinsDisponibles.json";
 
     @Override
     @Transactional(readOnly = true)
@@ -59,6 +58,4 @@ public class SkinServiceImpl implements SkinService {
     public void eliminar(Long id) {
         repository.deleteById(id);
     }
-
-
 }

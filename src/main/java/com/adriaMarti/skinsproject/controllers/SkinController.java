@@ -15,8 +15,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/skins")
 public class SkinController {
-
-
     @Autowired
     private SkinService skinService;
 
@@ -25,7 +23,6 @@ public class SkinController {
     public ResponseEntity<?> avaibleSkins(){
         return ResponseEntity.ok(skinService.listarDisponibles());
     }
-
 
     //Devuelve una lista de las skins compradas por el usuario.
     @GetMapping("/myskins")
@@ -36,7 +33,6 @@ public class SkinController {
     //adquirir una skin y guardarla en la base de datos.
     @PostMapping("/buy")
     public ResponseEntity<?> buySkin(@RequestBody Skin skin){
-        //tienes este skin ya?
         for (Skin skinObtenida: skinService.listarBD()) {
             if(skinObtenida.getNombre().equalsIgnoreCase(skin.getNombre())){
                 return ResponseEntity.badRequest()
@@ -46,7 +42,6 @@ public class SkinController {
         }
         //logica validacion de que el skin a comprar existe y de que el color elejido forma parte del skin
         if(skinPorNombre(skin.getNombre()) != null){
-            //si entra el skin existe
             SkinUtil skinexiste = skinPorNombre(skin.getNombre());
             Skin skinBD = new Skin();
             skinBD.setNombre(skin.getNombre());
@@ -65,7 +60,7 @@ public class SkinController {
 
     }
 
-    //PUT /skins/color - Permite a los usuarios cambiar el color de una skin comprada.
+    //Permite a los usuarios cambiar el color de una skin comprada.
     @PutMapping("/color")
     public ResponseEntity<?> colorSkin(@RequestBody Skin skin){
         for (Skin skinObtenida: skinService.listarBD()) {
@@ -85,8 +80,7 @@ public class SkinController {
                         .singletonMap("mensaje", "No tienes esta skin"));
     }
 
-
-    //DELETE /skins/delete/{id} - Permite a los usuarios eliminar una skin comprada.
+    //Permite a los usuarios eliminar una skin comprada.
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> eliminarSkin(@PathVariable Long id){
         Optional<Skin> o = skinService.mostrarPorId(id);
@@ -97,7 +91,7 @@ public class SkinController {
         return ResponseEntity.notFound().build();
     }
 
-    //GET /skin/getskin/{id} – Devuelve una determinada skin.
+    //Devuelve una determinada skin.
     @GetMapping("/getskin/{id}")
     public ResponseEntity<?> detalleSkin(@PathVariable Long id){
         Optional<Skin> o = skinService.mostrarPorId(id);
@@ -107,6 +101,8 @@ public class SkinController {
         return ResponseEntity.notFound().build();
     }
 
+
+    //METODOS UTILES
 
     //validar una skin disponible por nombre
     private SkinUtil skinPorNombre(String nombre){

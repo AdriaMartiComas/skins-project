@@ -22,8 +22,6 @@ public class Skin {
 
 
     //Getters y Setters
-
-
     public Long getId() {
         return id;
     }
